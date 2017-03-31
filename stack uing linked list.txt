@@ -1,0 +1,70 @@
+#include<stdio.h>
+
+struct Node{
+  int data;
+  struct Node* next;
+};
+ 
+struct Node* top = NULL;
+
+void push(int n)
+{
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp -> data = n;
+    temp -> next = NULL;
+    if(top == NULL)
+    {
+        top = temp;
+        return;
+    }
+    temp -> next = top;
+    top = temp;
+}
+
+void print()
+{
+    printf("the stack is\n");
+    struct Node* temp = top;
+    while(temp != NULL)
+    {
+        printf("%d\t", temp -> data);
+        temp = temp -> next;
+    }
+    printf("\n");
+}
+
+void pop()
+{
+    struct Node* temp = top;
+    printf("the element to be deleted is %d\n", temp -> data);
+    top = temp -> next;
+    free(temp);
+}
+
+void front()
+{
+    struct Node* temp = top;
+    printf("the element on the top of the stack is %d\n", temp -> data);
+    
+}
+
+
+int main()
+{
+   int n;
+   push(2);
+   push(5);
+   push(3);
+   push(7);
+   print();
+   front();
+   print();
+   pop();
+   print();
+   push(9);
+   print();
+   front();
+    
+    
+   return 0; 
+}
